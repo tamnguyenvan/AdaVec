@@ -587,9 +587,9 @@ def optimize_shapes(target_image_path, shapes, shape_groups, num_iter: int, canv
                 sgi.shape_ids = torch.LongTensor([sg_idx]).to(device)
 
             sargs_forsdf = pydiffvg.RenderFunction.serialize_scene(
-                w, h, shapes_forsdf, shape_groups_forsdf)
+                canvas_width, canvas_height, shapes_forsdf, shape_groups_forsdf)
             with torch.no_grad():
-                im_forsdf = render(w, h, 2, 2, 0, None, *sargs_forsdf)
+                im_forsdf = render(canvas_width, canvas_height, 2, 2, 0, None, *sargs_forsdf)
             # use alpha channel is a trick to get 0-1 image
             im_forsdf = (im_forsdf[:, :, 3]).detach().cpu().numpy()
             distance_weight = get_sdf(im_forsdf, normalize='to1')
