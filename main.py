@@ -18,7 +18,7 @@ from tqdm import tqdm
 import skimage
 import skimage.io
 from geometric_loss import GeometryLoss
-from path_simple import path_simple
+# from path_simple import path_simple
 import copy
 import random
 from shape_area import shapes_area
@@ -645,17 +645,17 @@ def optimize_shapes(target_image_path, shapes, shape_groups, num_iter: int, canv
 
 
 if __name__ == "__main__":
-    image_name="emoji_u1f940.png"
+    image_name="icon.png"
     log={}
-    exp_path = os.path.join(os.path.join("/root/autodl-tmp/img2vec/results", image_name.split(".")[0]))
+    exp_path = os.path.join(os.path.join("/content/AdaVec/results", image_name.split(".")[0]))
     os.makedirs(exp_path, exist_ok=True)
-    image_path = os.path.join("/root/autodl-tmp/img2vec/examples",image_name)
+    image_path = os.path.join("/content/AdaVec/examples",image_name)
     print("image_path:", image_path)
     # file_name = "51"
     start_time = time.time()
     device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
     # image_path = f"/root/autodl-tmp/img2vec/img/{file_name}.png"
-    sam = get_sam_seg(image_path=image_path, sam_checkpoint=r"/root/autodl-tmp/models/sam_vit_h_4b8939.pth",
+    sam = get_sam_seg(image_path=image_path, sam_checkpoint=r"/content/sam_vit_h_4b8939.pth",
                       exp_path=exp_path)
     time1 = time.time()
     log["get_sam_seg运行时长"] = f"{time1 - start_time} 秒"
