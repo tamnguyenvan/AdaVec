@@ -1,4 +1,4 @@
-from path_simple import path_simple
+# from path_simple import path_simple
 import torch
 import pydiffvg
 from tqdm import tqdm
